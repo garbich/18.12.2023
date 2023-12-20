@@ -12,21 +12,58 @@ public class Order {
         if(dishes!= null){
             System.out.println(dishes + " " + "add to order");
             order.add(dishes);
-
+            dishes.setDeleted(true);
+        return;
         }
-        System.out.println(dishes + "not on menu");
+        System.out.println("dishes " + "not on menu");
     }
 
+    private int sale(){
+        int totalSale = 0;
+        for(Dishes dish : order){
+            if(dish == Dishes.PASTA){
+                for(Dishes dishes : order){
+                    if(dishes== Dishes.WINE){
+                        totalSale += 30;
+                    }
+                }
+            }
+            if(dish == Dishes.SALAD) {
+                totalSale =+ 10;
+            }
+            if(dish == Dishes.DESSERT) {
+                totalSale =+ 15;
+            }
+            if(dish == Dishes.PIZZA){
+                for(Dishes dishes : order) {
+                    if (dishes == Dishes.SPRITE) {
+                        totalSale += 33;
+                    }
+                }
+            }
+        }
+        return totalSale;
+    }
+
+    public void calculateOrder() {
+        int totalsum = 0;
+        for(Dishes dish : order){
+            totalsum += dish.getValue();
+        }
+        System.out.println("Total sum - " + (totalsum - sale()));
+    }
 
     public void printOrder(){
         for(Dishes dish : order){
-            System.out.println(dish + "\n");
+            System.out.println(dish);
         }
     }
 
     public void printDishes(){
         for(Dishes dish : Dishes.values()){
-            System.out.println(dish);
+            if(dish.isDeleted() == false) {
+                System.out.println(dish);
+            }
         }
     }
 
