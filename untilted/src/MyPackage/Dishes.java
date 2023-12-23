@@ -1,7 +1,6 @@
 package MyPackage;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public enum Dishes {
     PIZZA(200, false),
@@ -35,15 +34,15 @@ public enum Dishes {
         isDeleted = deleted;
     }
 
-    Dishes(int value, boolean isdeleted) {
+    Dishes(int value, boolean isDeleted) {
         this.value = value;
         this.isDeleted = false;
     }
 
     public static Dishes findByString(String value) {
         String temp = value.toUpperCase();
-        for(Dishes dish : Dishes.values()){
-            if(dish.name().equals(temp)){
+        for (Dishes dish : Dishes.values()) {
+            if (dish.name().equals(temp)) {
                 return dish;
             }
         }
